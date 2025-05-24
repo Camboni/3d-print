@@ -9,9 +9,10 @@ function App() {
   const url = window.location.toString()
 
   if (!url.includes("login") && !url.includes("signup")) {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
-        navigate('/login')
+    supabase.auth.getUser().then(({ data: { user }, error: userError }) => {
+      if (userError) {
+        console.error('Errore nel recupero dell\'utente:', userError);
+        navigate("/login");
       }
     })
   }
@@ -19,6 +20,10 @@ function App() {
   return (
     <Outlet/>
   )
+}
+
+async function checkUser() {
+  
 }
 
 export default App

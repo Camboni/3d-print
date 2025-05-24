@@ -18,7 +18,6 @@ export default function Home(){
 
   getAllUsers()
   
-
   return (
     <h1>Ciao Home</h1>
   )
